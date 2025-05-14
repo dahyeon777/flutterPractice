@@ -4,10 +4,29 @@ void main() {
   // 플러터 앱을 실행한다.
   runApp(
     MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.blue,
-        body: Image.asset('asset/img/logo.png'),
-      ),
+      home: HomeScreen(),
     ),
   );
+}
+
+///StatelessWidget
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      ///335CBO
+      backgroundColor: Color(0xFF335CB0),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'asset/img/logo.png',
+          ),
+          CircularProgressIndicator(
+            color: Colors.white,
+          ),
+        ],
+      ),
+    );
+  }
 }
