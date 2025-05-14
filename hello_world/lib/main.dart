@@ -9,24 +9,30 @@ void main() {
   );
 }
 
-///StatelessWidget
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      ///335CBO
+      /// 335CB0
       backgroundColor: Color(0xFF335CB0),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            'asset/img/logo.png',
-          ),
-          CircularProgressIndicator(
-            color: Colors.white,
-          ),
-        ],
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 32.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'asset/img/logo.png',
+            ),
+            SizedBox(height: 28.0),
+            CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
