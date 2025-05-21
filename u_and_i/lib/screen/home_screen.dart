@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,6 +15,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               _Top(),
+
               /// 이미지
               _Bottom(),
             ],
@@ -37,7 +39,7 @@ class _Top extends StatelessWidget {
             Text(
               'U&I',
               style: textTheme.displayLarge,
-              ),
+            ),
             Text(
               '우리 처음 만난날',
               style: textTheme.bodyLarge,
@@ -49,7 +51,28 @@ class _Top extends StatelessWidget {
             IconButton(
               iconSize: 60.0,
               color: Colors.red,
-              onPressed: () {},
+              onPressed: () {
+                showCupertinoDialog(
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (BuildContext context){
+                    return Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        color: Colors.white,
+                        height: 300.0,
+                        child: CupertinoDatePicker(
+                          mode: CupertinoDatePickerMode.date,
+                          onDateTimeChanged: (DateTime date){
+                            print(date);
+                          },
+                          dateOrder: DatePickerDateOrder.ymd,
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
               icon: Icon(
                 Icons.favorite,
               ),
@@ -79,5 +102,3 @@ class _Bottom extends StatelessWidget {
     );
   }
 }
-
-
