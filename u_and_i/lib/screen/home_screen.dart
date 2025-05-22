@@ -50,6 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 300.0,
             child: CupertinoDatePicker(
               mode: CupertinoDatePickerMode.date,
+              initialDateTime: selectedDate,
+              maximumDate: DateTime.now(),
               onDateTimeChanged: (DateTime date) {
                 setState(() {
                   selectedDate = date;
