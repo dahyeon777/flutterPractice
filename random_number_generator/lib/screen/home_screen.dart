@@ -66,11 +66,29 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Text('''
-                123
-                456
-                789
-                '''),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          [1, 2, 3],
+          [4, 5, 6],
+          [7, 8, 9],
+        ]
+            .map(
+              (e) => Row(
+                children: e
+                    .map(
+                      (number) => Text(
+                        number.toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }
@@ -90,5 +108,3 @@ class _Footer extends StatelessWidget {
     );
   }
 }
-
-
