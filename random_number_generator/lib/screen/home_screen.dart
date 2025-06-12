@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:random_number_generator/constant/color.dart';
 import 'dart:math';
 
+import 'package:random_number_generator/screen/setting_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -28,9 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-
               ///제목과 아이콘 버튼이 있는곳
-              _Header(),
+              _Header(
+                onPressed: onSettingIconPressed,
+              ),
 
               ///숫자가 있는곳
               _Body(
@@ -44,6 +47,16 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  onSettingIconPressed() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder:(BuildContext context){
+          return SettingScreen();
+;        },
       ),
     );
   }
@@ -64,9 +77,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-
 class _Header extends StatelessWidget {
-  const _Header({super.key});
+  final VoidCallback onPressed;
+
+  const _Header({
+    required this.onPressed,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +100,7 @@ class _Header extends StatelessWidget {
         ),
         IconButton(
           color: redColor,
-          onPressed: () {},
+          onPressed: onPressed,
           icon: Icon(
             Icons.settings,
           ),
@@ -109,20 +126,18 @@ class _Body extends StatelessWidget {
         children: numbers
             .map((e) => e.toString().split(''))
             .map(
-              (e) =>
-              Row(
+              (e) => Row(
                 children: e
                     .map(
-                      (number) =>
-                      Image.asset(
+                      (number) => Image.asset(
                         'asset/img/$number.png',
                         width: 50.0,
                         height: 70.0,
                       ),
-                )
+                    )
                     .toList(),
               ),
-        )
+            )
             .toList(),
       ),
     );
