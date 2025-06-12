@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:random_number_generator/constant/color.dart';
+import 'dart:math';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+
               ///제목과 아이콘 버튼이 있는곳
               _Header(),
 
@@ -37,15 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               ///버튼이 있는곳
               _Footer(
-                onPressed: (){
-                  setState(() {
-                    numbers = [
-                      999,
-                      888,
-                      777
-                    ];
-                  });;
-                },
+                onPressed: generateRandomNumber,
               ),
             ],
           ),
@@ -53,7 +47,23 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  generateRandomNumber() {
+    final rand = Random();
+
+    final Set<int> newNumbers = {};
+
+    while (newNumbers.length < 3) {
+      final randomNumber = rand.nextInt(1000);
+      newNumbers.add(randomNumber);
+    }
+
+    setState(() {
+      numbers = newNumbers.toList();
+    });
+  }
 }
+
 
 class _Header extends StatelessWidget {
   const _Header({super.key});
@@ -99,18 +109,20 @@ class _Body extends StatelessWidget {
         children: numbers
             .map((e) => e.toString().split(''))
             .map(
-              (e) => Row(
+              (e) =>
+              Row(
                 children: e
                     .map(
-                      (number) => Image.asset(
+                      (number) =>
+                      Image.asset(
                         'asset/img/$number.png',
                         width: 50.0,
                         height: 70.0,
                       ),
-                    )
+                )
                     .toList(),
               ),
-            )
+        )
             .toList(),
       ),
     );
